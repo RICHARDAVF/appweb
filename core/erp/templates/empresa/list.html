@@ -1,0 +1,23 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'empresa/js/list.js' %}"></script>
+{% endblock %}
+{% block columnas %}
+    <tr>
+        <th scope="col" style="width: 10%;">ID</th>
+        <th scope="col" style="width: 25%;">EMPRESA</th>
+        <th scope="col" style="width: 10%;">RUC</th>
+        <th scope="col" style="width: 15%;">SUPERVISOR</th>
+        <th scope="col" style="width: 15%;">ENCARGADO</th>
+        <th scope="col" style="width: 15%;">PLANILLERO</th>
+        <th scope="col" style="width: 10%;">OPCIONES</th>
+        
+    </tr>
+{% endblock %}
+{% block filas %}
+
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

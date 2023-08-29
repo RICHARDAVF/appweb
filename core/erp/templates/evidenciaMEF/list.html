@@ -1,0 +1,36 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'evidenciaMEF/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columnas %}
+    <tr>
+        <th scope="col" >ID</th>
+        <th scope="col" >EMPRESA</th>
+        <th scope="col" >ENERO</th>
+        <th scope="col" >FEBRERO</th>
+        <th scope="col" >MARZO</th>
+        <th scope="col" >ABRIL</th>
+        <th scope="col" >MAYO</th>
+        <th scope="col" >JUNIO</th>
+        <th scope="col" >JULIO</th>
+        <th scope="col" >AGOSTO</th>
+        <th scope="col" >SEPTIEMBRE</th>
+        <th scope="col" >OCTUBRE</th>
+        <th scope="col" >NOVIMBRE</th>
+        <th scope="col" >DICIEMBRE</th>
+        <th scope="col" >OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block filas %}
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var elemento = document.getElementById('btns');
+    elemento.style.display = 'none'
+</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% load static %}
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <a href="">
+        <img src="{% static 'img/logo.png' %}" alt="full computer" class="brand-image elevation-3 bg-primary"
+            style="opacity: .8;width:100%">
+        <span class="brand-text font-weight-light">SISTEMA DE CONTRATOS</span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ request.user.get_image }}" class="img-circle" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{request.user.username}}</a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">Mantenimientos</li>
+                <li class="nav-item">
+                    <a href="{% url 'user:user_list'%}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'erp:empresa_list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                            Clientes
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link" >
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Control ISO 9001
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: block;">
+                        <li class="nav-item">
+                            <a href="{% url 'erp:eu_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Evidencia Unica</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'erp:emi_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Evidencia MI</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'erp:emef_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Evidencia MEF
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'erp:empi_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Evidencia MPI</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'erp:emrc_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Evidencia MRC</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'erp:ea_list' %}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Evidencia Anual</p>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+               
+            </ul>
+        </nav>
+    </div>
+</aside>

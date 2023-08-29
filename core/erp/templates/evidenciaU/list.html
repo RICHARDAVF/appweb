@@ -1,0 +1,27 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'evidenciaU/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columnas %}
+    <tr>
+        <th scope="col" style="width: 10%;">ID</th>
+        <th scope="col" style="width: 30%;">EMPRESA</th>
+        <th scope="col" style="width: 10%;">EV. PROPUESTA</th>
+        <th scope="col" style="width: 20%;">FECHA</th>
+        <th scope="col" style="width: 10%;">DESVINCULACION</th>
+        <th scope="col" style="width: 10%;">OPCIONES</th>
+    </tr>
+{% endblock %}
+
+{% block filas %}
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var elemento = document.getElementById('btns');
+    elemento.style.display = 'none'
+</script>
+{% endblock %}
