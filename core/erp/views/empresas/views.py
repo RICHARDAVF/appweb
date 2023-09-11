@@ -1,8 +1,8 @@
-from django.http import JsonResponse
-from django.views.generic import CreateView,ListView,UpdateView,DeleteView
+from django.http import HttpResponse, JsonResponse
+from django.views.generic import CreateView,ListView,UpdateView,DeleteView,View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.erp.forms import FormEmpresas
-from core.erp.models import Empresa
+from core.erp.models import *
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
@@ -14,6 +14,7 @@ class CreateViewEmpresa(LoginRequiredMixin,CreateView):
     success_url = reverse_lazy('erp:empresa_list')
     def get_context_data(self, **kwargs) :
         context = super().get_context_data(**kwargs)
+       
         context['title'] = "Agregar nueva Compania"
         context['entidad'] = 'Empresas'
         context['action'] = 'add'
@@ -47,7 +48,8 @@ class ListViewEmpresa(LoginRequiredMixin,ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(Empresa.objects.all()):
+                
+                for index,value in enumerate(Empresa.objects.filter(usuario_id=self.request.user.id)):
                     item = value.toJSON()
                     item['position'] = index
                     data.append(item)
@@ -59,6 +61,7 @@ class ListViewEmpresa(LoginRequiredMixin,ListView):
         return JsonResponse(data, safe=False)
     def get_context_data(self, **kwargs) :
         context =  super().get_context_data(**kwargs)
+      
         context['title'] = 'Listado de Empresas'
         context['create_url'] = reverse_lazy('erp:empresa_create')
         context['list_url'] = reverse_lazy('erp:empresa_list')

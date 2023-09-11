@@ -46,7 +46,7 @@ class ListViewEvidenciaMEF(ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(EvidenciaMensualEF.objects.all()):
+                for index,value in enumerate(EvidenciaMensualEF.objects.filter(usuario_id=self.request.user.id)):
                     item = value.toJSON()
                     # item['cumplimiento'] = True
                     # for val in item.values():

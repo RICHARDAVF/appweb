@@ -46,7 +46,7 @@ class ListViewEvidenciaMRC(ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(EvidenciaMensualRC.objects.all()):
+                for index,value in enumerate(EvidenciaMensualRC.objects.filter(usuario_id=self.request.user.id)):
                     item = value.toJSON()
                     # item['cumplimiento'] = True
                     # for val in item.values():

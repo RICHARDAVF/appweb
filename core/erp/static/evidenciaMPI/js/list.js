@@ -3,18 +3,37 @@ function renderEvidencia(data, type, row, columnIndex) {
     var field = fields[columnIndex - 2]; // Restamos 2 porque los campos comienzan desde la tercera columna (índice 2)
     
     if (row[field] === '') {
-        return '<strong class="text-red"> PENDIENTE </strong>';
+        return '<strong > Pendiente </strong>';
     }
 
-    return '<a href="' + row[field] + '" target="_blank" ><i class="fas fa-file-pdf bg-red fa-lg"></i></a>';
+    return '<a href="' + row[field] + '" target="_blank" >Documento</a>';
 }
 
 $(function () {
-    $('#data').DataTable({
+    var table = $('#data').DataTable({
         responsive: true,
         autoWidth: false,
         destroy: true,
         deferRender: true,
+        dom:'Qlfrtip',
+        conditions:{
+            num:{
+                'MultipleOf':{
+                    conditionName:'MultipleOf',
+                    init : function(that,fn,preDefined=null){
+                    },
+                    inputValue:function(el){
+                        return $(el[0].val());
+                    },
+                    isInputValid:function(el,that){
+                        return $(el[0].val().length!==0);
+                    },
+                    search:function(value,comparison){
+                        return value%comparison===0;
+                    }
+                }
+            }
+        },
         ajax: {
             url: window.location.pathname,
             type: 'POST',
@@ -24,7 +43,7 @@ $(function () {
             dataSrc: ""
         },
         columns: [
-            { "data": "position" },
+            { "data": "id" },
             { "data": "empresa.empresa" },
             { "data": "enero" },
             { "data": "febrero" },
@@ -38,7 +57,7 @@ $(function () {
             { "data": "octubre" },
             { "data": "noviembre" },
             { "data": "diciembre" },
-            { "data": "opcion" },
+            { "data": "id" },
         ],
         columnDefs: [
             {
@@ -61,7 +80,25 @@ $(function () {
             },
         ],
         initComplete: function (settings, json) {
+            new $.fn.dataTable.Buttons(table, {
+                buttons: [
+                    'copy', 'excel', 'csv', 'pdf', 'print',"colvis",
+                ],
+                // Personalizar la apariencia de los botones (opcional)
+                dom: {
+                    button: {
+                        className: 'btn btn-primary'
+                    }
+                }
+            });
 
+            // Crear un contenedor para los botones de exportación
+            var $exportButtonsContainer = $('<div class="export-buttons-container"></div>');
+            table.buttons().container().appendTo($exportButtonsContainer);
+
+            // Agregar el contenedor de botones antes del input de búsqueda
+            $exportButtonsContainer.insertBefore($('#data_wrapper .dataTables_filter'));
+        
         }
     });
 });

@@ -47,7 +47,7 @@ class ListViewEvidenciaU(ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(EvidenciaUnica.objects.all()):
+                for index,value in enumerate(EvidenciaUnica.objects.filter(usuario_id=self.request.user.id)):
                     item = value.toJSON()
                     item['position'] = index
                     data.append(item)

@@ -17,14 +17,18 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">Mantenimientos</li>
-                <li class="nav-item">
-                    <a href="{% url 'user:user_list'%}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Usuarios
-                        </p>
-                    </a>
-                </li>
+               
+                {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a href="{% url 'user:user_list'%}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Usuarios
+                            </p>
+                        </a>
+                    </li>
+                {% endif %}
+               
 
                 <li class="nav-item">
                     <a href="{% url 'erp:empresa_list' %}" class="nav-link">
@@ -35,7 +39,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" >
                     <a href="#" class="nav-link" >
                         <i class="nav-icon fas fa-th"></i>
                         <p>
@@ -43,7 +47,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: block;">
+                    <ul class="nav nav-treeview" >
                         <li class="nav-item">
                             <a href="{% url 'erp:eu_list' %}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

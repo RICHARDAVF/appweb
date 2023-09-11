@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm,TextInput
 from core.erp.models import Empresa
 from core.erp.models import *
 class FormEmpresas(ModelForm):
@@ -7,6 +7,12 @@ class FormEmpresas(ModelForm):
     class Meta:
         model = Empresa
         fields = '__all__'
+        widgets = {
+            
+            'usuario':TextInput(attrs={
+                'type':"hidden" 
+            })
+        }
     def save(self, commit=True):
         data = {}
         form = super()
@@ -25,6 +31,15 @@ class FormEvidenciaU(ModelForm):
     class Meta:
         model = EvidenciaUnica
         fields = '__all__'
+        widgets = {
+            'empresa':TextInput(attrs={
+                "class":"form-control",
+                "readonly":True
+            }),
+            'usuario':TextInput(attrs={
+                'type':"hidden"
+            })
+        }
     def save(self, commit = True ):
         data = {}
         form = super()
@@ -44,6 +59,15 @@ class FormEvidenciaMI(ModelForm):
     class Meta:
         model = EvidenciaMensualI
         fields = '__all__'
+        widgets = {
+            'empresa':TextInput(attrs={
+                "class":"form-control",
+                "readonly":True
+            }),
+            'usuario':TextInput(attrs={
+                'type':"hidden"
+            })
+        }
     def save(self, commit = True ):
         data = {}
         form = super()
@@ -63,6 +87,15 @@ class FormEvidenciaMEF(ModelForm):
     class Meta:
         model = EvidenciaMensualEF
         fields = '__all__'
+        widgets = {
+            'empresa':TextInput(attrs={
+                "class":"form-control",
+                "readonly":True
+            }),
+            'usuario':TextInput(attrs={
+                'type':"hidden"
+            })
+        }
     def save(self, commit = True ):
         data = {}
         form = super()
@@ -82,6 +115,15 @@ class FormEvidenciaMRC(ModelForm):
     class Meta:
         model = EvidenciaMensualRC
         fields = '__all__'
+        widgets = {
+            'empresa':TextInput(attrs={
+                "class":"form-control",
+                "readonly":True
+            }),
+            'usuario':TextInput(attrs={
+                'type':"hidden"
+            })
+        }
     def save(self, commit = True ):
         data = {}
         form = super()
@@ -101,6 +143,15 @@ class FormEvidenciaMPI(ModelForm):
     class Meta:
         model = EvidenciaMensualPI
         fields = '__all__'
+        widgets = {
+            'empresa':TextInput(attrs={
+                "class":"form-control",
+                "readonly":True
+            }),
+            'usuario':TextInput(attrs={
+                'type':"hidden"
+            })
+        }
     def save(self, commit = True ):
         data = {}
         form = super()
@@ -120,6 +171,15 @@ class FormEvidenciaA(ModelForm):
     class Meta:
         model = EvidenciaAnual
         fields = '__all__'
+        widgets = {
+            'empresa':TextInput(attrs={
+                "class":"form-control",
+                "readonly":True
+            }),
+            'usuario':TextInput(attrs={
+                'type':"hidden"
+            })
+        }
     def save(self, commit = True ):
         data = {}
         form = super()

@@ -13,6 +13,7 @@ urlpatterns = [
     path('empresa/add/',CreateViewEmpresa.as_view(),name='empresa_create'),
     path('empresa/edit/<int:pk>/',UpdateViewEmpresa.as_view(),name='empresa_edit'),
     path('empresa/delete/<int:pk>/',DeleteViewEmpresa.as_view(),name='empresa_delete'),
+
     #EVIDENCIAS UNICAS
     path('evidenciaU/list/',ListViewEvidenciaU.as_view(),name='eu_list'),
     path('evidenciaU/add/',CreateViewEvidenciaU.as_view(),name='eu_create'),

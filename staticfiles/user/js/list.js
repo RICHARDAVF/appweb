@@ -20,7 +20,7 @@ $(function () {
             {"data": "area"},     
             {"data": "image"},     
             {"data": "groups"},     
-            {"data": "opcion"},
+            {"data": "id"},
           
         ],
         columnDefs: [

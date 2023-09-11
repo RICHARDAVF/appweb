@@ -46,13 +46,13 @@ class ListViewEvidenciaMI(ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(EvidenciaMensualI.objects.all()):
+                for index,value in enumerate(EvidenciaMensualI.objects.filter(usuario_id=self.request.user.id)):
                     item = value.toJSON()
-                    # item['cumplimiento'] = True
-                    # for val in item.values():
-                    #     if val == '':
-                    #         item['cumplimiento'] = False
-                    #         break
+                    item['cumplimiento'] = True
+                    for val in item.values():
+                        if val == '':
+                            item['cumplimiento'] = False
+                            break
                     item['position'] = index
                     data.append(item)
             else:

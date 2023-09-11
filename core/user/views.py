@@ -8,11 +8,12 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.mixins import LoginRequiredMixin
-import pandas as pd
+
 # Create your views here.
 class ListViewUser(LoginRequiredMixin,ListView):
     model = User
     template_name = 'user/list.html'
+
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)

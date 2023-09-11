@@ -6,7 +6,7 @@ from django.dispatch import receiver
 import os
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from core.user.models import User
 # Create your models here.
 class Empresa(models.Model):
     empresa = models.CharField(max_length=255,verbose_name="Nombre de la Compania")
@@ -14,6 +14,7 @@ class Empresa(models.Model):
     supervisor = models.CharField(max_length=255,verbose_name="Supervisor de la Compania",null=True,blank=True)
     encargado = models.CharField(max_length=255,verbose_name="Encargado de la Compania",null=True,blank=True)
     planillero = models.CharField(max_length=255,verbose_name="Planillero de la Compania",null=True,blank=True)
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
     def __str__(self) -> str:
         return self.empresa
     def toJSON(self):
@@ -31,6 +32,7 @@ class EvidenciaUnica(models.Model):
     propuesta = models.FileField(upload_to='evidencia-unica/',null=True,blank=True,verbose_name="Propuesta del Servicio")
     fecha = models.DateField(auto_now=True,verbose_name="Fecha de Firma")
     desvinculacion = models.FileField(upload_to='evidencia-unica/',null=True,blank=True,verbose_name="Desvinculacion")
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
     def __str__(self) -> str:
         return self.propuesta
     def toJSON(self):
@@ -73,6 +75,7 @@ class EvidenciaMensualI(models.Model):
     octubre = models.FileField(upload_to='evidencia-mensualI/',null=True,blank=True,verbose_name="Octubre")
     noviembre = models.FileField(upload_to='evidencia-mensualI/',null=True,blank=True,verbose_name="Noviembre")
     diciembre = models.FileField(upload_to='evidencia-mensualI/',null=True,blank=True,verbose_name="Diciembre")
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
     class Meta:
         verbose_name = 'EvidenciaMensualImpuesto'
         verbose_name_plural = 'EvidenciasMensualesImpuestos'
@@ -112,6 +115,7 @@ class EvidenciaMensualEF(models.Model):
     octubre = models.FileField(upload_to='evidencia-mensualEF/',null=True,blank=True,verbose_name="Octubre")
     noviembre = models.FileField(upload_to='evidencia-mensualEF/',null=True,blank=True,verbose_name="Noviembre")
     diciembre = models.FileField(upload_to='evidencia-mensualEF/',null=True,blank=True,verbose_name="Diciembre")
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
     class Meta:
         verbose_name = 'EvidenciaMensualEF'
         verbose_name_plural = 'EvidenciasMensualesEF'
@@ -151,6 +155,7 @@ class EvidenciaMensualRC(models.Model):
     octubre = models.FileField(upload_to='evidencia-mensualRC/',null=True,blank=True,verbose_name="Octubre")
     noviembre = models.FileField(upload_to='evidencia-mensualRC/',null=True,blank=True,verbose_name="Noviembre")
     diciembre = models.FileField(upload_to='evidencia-mensualRC/',null=True,blank=True,verbose_name="Diciembre")
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
     class Meta:
         verbose_name = 'EvidenciaMensualRC'
         verbose_name_plural = 'EvidenciasMensualesRC'
@@ -190,6 +195,8 @@ class EvidenciaMensualPI(models.Model):
     octubre = models.FileField(upload_to='evidencia-mensualPI/',null=True,blank=True,verbose_name="Octubre")
     noviembre = models.FileField(upload_to='evidencia-mensualPI/',null=True,blank=True,verbose_name="Noviembre")
     diciembre = models.FileField(upload_to='evidencia-mensualPI/',null=True,blank=True,verbose_name="Diciembre")
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+
     class Meta:
         verbose_name = 'EvidenciaMensualPI'
         verbose_name_plural = 'EvidenciasMensualesPI'
@@ -222,6 +229,8 @@ class EvidenciaAnual(models.Model):
     evidencia_startup = models.FileField(upload_to='evidencia-anual/',null=True,blank=True,verbose_name="Evidencia Start Up")
     evidencia_eeff = models.FileField(upload_to='evidencia-anual/',null=True,blank=True,verbose_name="Evidencia de EEFF")
     evidencia_dja = models.FileField(upload_to='evidencia-anual/',null=True,blank=True,verbose_name="Evidencia de DJA")
+    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True,blank=True)
+
     def __str__(self) -> str:
         return self.evidencia_comunicacion
     def toJSON(self):
