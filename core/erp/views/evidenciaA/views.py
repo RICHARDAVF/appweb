@@ -46,16 +46,26 @@ class ListViewEvidenciaA(ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(EvidenciaAnual.objects.filter(usuario_id=self.request.user.id)):
-                    item = value.toJSON()
-                    item['cumplimiento'] = True
-                   
-                    for val in item.values():
-                        if val == '':
-                            item['cumplimiento'] = False
-                            break
-                    item['position'] = index
-                    data.append(item)
+                if self.request.user.is_superuser:
+                    for index,value in enumerate(EvidenciaAnual.objects.all()):
+                        item = value.toJSON()
+                        item['cumplimiento'] = True
+                    
+                        for val in item.values():
+                            if val == '':
+                                item['cumplimiento'] = False
+                                break
+                        data.append(item)
+                else:
+                    for index,value in enumerate(EvidenciaAnual.objects.filter(usuario_id=self.request.user.id)):
+                        item = value.toJSON()
+                        item['cumplimiento'] = True
+                    
+                        for val in item.values():
+                            if val == '':
+                                item['cumplimiento'] = False
+                                break
+                        data.append(item)
             else:
                 data['error'] = 'Ha ocurrido un error'
         except Exception as e:

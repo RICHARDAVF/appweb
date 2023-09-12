@@ -46,15 +46,18 @@ class ListViewEvidenciaMRC(ListView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                for index,value in enumerate(EvidenciaMensualRC.objects.filter(usuario_id=self.request.user.id)):
-                    item = value.toJSON()
-                    # item['cumplimiento'] = True
-                    # for val in item.values():
-                    #     if val == '':
-                    #         item['cumplimiento'] = False
-                    #         break
-                    item['position'] = index
-                    data.append(item)
+                if self.request.user.is_superuser:
+                    for index,value in enumerate(EvidenciaMensualRC.objects.all()):
+                        item = value.toJSON()
+                    
+                        item['position'] = index
+                        data.append(item)
+                else:
+                    for index,value in enumerate(EvidenciaMensualRC.objects.filter(usuario_id=self.request.user.id)):
+                        item = value.toJSON()
+                    
+                        item['position'] = index
+                        data.append(item)
             else:
                 data['error'] = 'Ha ocurrido un error'
         except Exception as e:

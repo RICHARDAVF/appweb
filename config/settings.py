@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import dotenv_values
-conf=dotenv_values('.env')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,10 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = conf["SECRET_KEY"]
+SECRET_KEY = 'django-insecure-2#4sgpuh36o&9n(-066^v_99-v18-h4lo@y^j7sya==__s=m+9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = conf["ETAPA"] 
+DEBUG = True
+
 ALLOWED_HOSTS = ["*"]
 
 
@@ -92,13 +91,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': conf["ENGINE"],
-        'NAME': conf["NAME"],
-        "USER":conf["USER"],
-        "PASSWORD":conf["PASSWORD"],
-        "HOST":conf["HOST"],
+        'ENGINE': "mssql",
+        'NAME': "prueba",
+        "USER":"avife",
+        "PASSWORD":"123",
+        "HOST":"DESKTOP-DDHTMVI",
         "OPTIONS": {
-            "driver": conf["DRIVER"]}
+            "driver": "ODBC Driver 17 for SQL Server"}
     }
 }
 
@@ -151,7 +150,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user.User'
 LOGOUT_REDIRECT_URL = ''
 LOGIN_REDIRECT_URL = '/erp/empresa/list/'
-handler404 = 'core.erp.views404.PageNotFoundView'
 JAZZMIN_SETTINGS = {
     
     "site_title": "Sistena Contable",
