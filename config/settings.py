@@ -149,6 +149,7 @@ MEDIA_URL = '/archivos/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user.User'
 LOGOUT_REDIRECT_URL = ''
+handler404 = 'core.erp.views.PageNotFoundView'
 LOGIN_REDIRECT_URL = '/erp/empresa/list/'
 JAZZMIN_SETTINGS = {
     

@@ -1,4 +1,5 @@
 from django.urls import path
+from core.erp.view404 import PageNotFoundView
 from core.erp.views.evidenciaU.views import *
 from core.erp.views.empresas.views import *
 from core.erp.views.evidenciaA.views import *
@@ -6,6 +7,7 @@ from core.erp.views.evidenciaMI.views import *
 from core.erp.views.evidenciaMEF.views import *
 from core.erp.views.evidenciaMPI.views import *
 from core.erp.views.evidenciaMRC.views import *
+handler404 = PageNotFoundView.as_view()
 app_name = 'erp'
 urlpatterns = [
     #EMPRESAS
